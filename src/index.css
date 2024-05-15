@@ -12,3 +12,16 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@keyframes lift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.lift {
+  animation: lift 0.3s ease-in-out;
+}

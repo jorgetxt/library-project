@@ -12,7 +12,7 @@ const Book = ({ book, isChoosenList, index = 10 }: Props) => {
 
   const handleAction = () => {
     if (isChoosenList) {
-      removeBook(book);
+      // removeBook(book);
     } else {
       setChosenBook(book);
     }

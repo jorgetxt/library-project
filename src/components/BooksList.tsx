@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { useMemo } from "react";
 import booksQuerys from "../querys/booksQuerys";
+import Test from "./Test";
 
 const BooksList = () => {
   const { chosenBooks } = useSelector((state: RootState) => state.books);
@@ -30,7 +31,11 @@ const BooksList = () => {
           </div>
         ))}
       </div>
-      {chosenBooks.length && (
+      <div className="bg-slate-400 overflow-y-auto no-scrollbar">
+        <Test books={chosenBooks} />
+      </div>
+
+      {/* {chosenBooks.length && (
         <div className="sticky top-0 right-0 col-span-1 h-screen overflow-y-auto p-10 bg-gray-400 no-scrollbar">
           {chosenBooks?.map((book, index) => (
             <div key={book.ISBN} className="">
@@ -38,7 +43,7 @@ const BooksList = () => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
