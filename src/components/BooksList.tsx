@@ -22,9 +22,9 @@ const BooksList = () => {
 
   return (
     <div
-      className={chosenBooks.length ? "grid grid-cols-4" : "grid grid-cols-3"}
+      className={chosenBooks.length ? "grid grid-cols-4" : " grid grid-cols-3"}
     >
-      <div className="grid min-h-screen col-span-3 grid-cols-1  md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-20 m-4">
+      <div className="grid bg-slate-100 min-h-screen col-span-3 grid-cols-1  md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5  gap-20 p-4">
         {booksFilter?.map(({ book }) => (
           <div key={book.ISBN}>
             <Book book={book} />
