@@ -1,4 +1,4 @@
-Proyecto Jorge Hidalgo, react, typescript, react query, tailwind, framer motion
+Proyecto Jorge Hidalgo, react, typescript, react query, tailwind, redux toolkit framer motion
 
 url: https://6646103ed7ce22c018ae13c1--eloquent-kashata-52aa3d.netlify.app/
 
