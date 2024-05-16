@@ -27,7 +27,7 @@ const ChosenCards = ({ books }: Props) => {
           key={card.ISBN}
           className={`absolute w-64 p-4 bg-slate-800 rounded-lg shadow-lg transform transition-all duration-300 ease-in-out cursor-pointer ${
             selectedCard === card.ISBN
-              ? "translate-y-6 z-20 scale-105"
+              ? "translate-y-6 z-20 scale-105 bg-gradient-to-t from-slate-800 to-slate-600 "
               : "scale-100"
           } hover:-translate-y-2`}
           style={{
