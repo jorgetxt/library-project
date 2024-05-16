@@ -11,14 +11,12 @@ const SideModal: React.FC<SideModalProps> = ({
   children,
   title,
 }) => {
-  // Close modal when ESC key is pressed
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Escape") {
       onClose();
     }
   };
 
-  // Close modal when clicking outside of it
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -62,7 +60,7 @@ const SideModal: React.FC<SideModalProps> = ({
                 </svg>
               </button>
             </div>
-            <div className="">{children}</div>
+            <div>{children}</div>
           </div>
         </div>
       )}
