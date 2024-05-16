@@ -9,7 +9,9 @@ import Header from "./Header";
 import BooksList from "./BooksList";
 
 const BookScreen = () => {
-  const { chosenBooks } = useSelector((state: RootState) => state.books);
+  const { chosenBooks, genrerFilter } = useSelector(
+    (state: RootState) => state.books
+  );
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
@@ -19,13 +21,16 @@ const BookScreen = () => {
 
   const { data, isFetching } = getBooksQuery;
 
-  const booksFilter = useMemo(
-    () =>
-      data?.default.library.filter(
-        ({ book }) => !chosenBooks.some(({ ISBN }) => ISBN === book.ISBN)
-      ),
-    [data, chosenBooks]
-  );
+  const booksFilter = useMemo(() => {
+    let filter = data?.default.library.filter(
+      ({ book }) => !chosenBooks.some(({ ISBN }) => ISBN === book.ISBN)
+    );
+
+    if (genrerFilter.length) {
+      filter = filter?.filter(({ book }) => genrerFilter.includes(book.genre));
+    }
+    return filter;
+  }, [data, chosenBooks, genrerFilter]);
 
   return (
     <>
@@ -46,7 +51,11 @@ const BookScreen = () => {
           className="grid col-span-3 bg-gradient-to-t
           from-gray-400 to-slate-100 min-h-screen"
         >
-          <BooksList books={booksFilter} isLoading={isFetching} />
+          <BooksList
+            books={booksFilter}
+            booksAll={data?.default.library}
+            isLoading={isFetching}
+          />
         </div>
         {!isMediumScreen && !!chosenBooks.length && (
           <div

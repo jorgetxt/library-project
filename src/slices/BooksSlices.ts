@@ -4,10 +4,12 @@ import { Book } from "../interfaces/Books.interfaces";
 
 export interface BooksState {
   chosenBooks: Book[];
+  genrerFilter: string[];
 }
 
 const initialState: BooksState = {
   chosenBooks: [],
+  genrerFilter: [],
 };
 
 export const booksSlice = createSlice({
@@ -17,9 +19,12 @@ export const booksSlice = createSlice({
     setChosenBooks: (state, action: PayloadAction<Book[]>) => {
       state.chosenBooks = action.payload;
     },
+    setGenrerFilter: (state, action: PayloadAction<string[]>) => {
+      state.genrerFilter = action.payload;
+    },
   },
 });
 
-export const { setChosenBooks } = booksSlice.actions;
+export const { setChosenBooks, setGenrerFilter } = booksSlice.actions;
 
 export default booksSlice.reducer;
