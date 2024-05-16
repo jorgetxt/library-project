@@ -22,13 +22,7 @@ const BooksList = ({ books, isLoading }: BooksListProps) => {
             />
           ))
         : books?.map(({ book }) => (
-            <motion.div
-              layout
-              key={book.ISBN}
-              drag
-              dragElastic={2}
-              dragConstraints={{ bottom: 0, left: 0, right: 0, top: 0 }}
-            >
+            <motion.div layout key={book.ISBN}>
               <Book book={book} />
             </motion.div>
           ))}

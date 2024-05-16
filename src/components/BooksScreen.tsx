@@ -13,7 +13,7 @@ const BookScreen = () => {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const isMediumScreen = useMedia({ minWidth: "1000px" });
+  const isMediumScreen = useMedia({ maxWidth: "1000px" });
 
   const { getBooksQuery } = booksQuerys();
 
@@ -29,7 +29,7 @@ const BookScreen = () => {
 
   return (
     <>
-      {!isMediumScreen && (
+      {isMediumScreen && (
         <Header
           onButtonClick={() => setModalOpen(true)}
           number={chosenBooks.length}
@@ -37,23 +37,29 @@ const BookScreen = () => {
       )}
       <div
         className={
-          chosenBooks.length && isMediumScreen
+          chosenBooks.length && !isMediumScreen
             ? "grid grid-cols-4"
             : "grid grid-cols-3"
         }
       >
-        <div className="grid col-span-3 bg-slate-100 min-h-screen">
+        <div
+          className="grid col-span-3 bg-gradient-to-t
+          from-gray-400 to-slate-100 min-h-screen"
+        >
           <BooksList books={booksFilter} isLoading={isFetching} />
         </div>
-        {isMediumScreen && !!chosenBooks.length && (
-          <div className="sticky top-0 right-0 col-span-1 h-screen overflow-y-auto p-10 bg-gray-400 no-scrollbar">
+        {!isMediumScreen && !!chosenBooks.length && (
+          <div
+            className="sticky top-0 right-0 col-span-1 h-screen overflow-y-auto p-10 bg-gradient-to-t
+          from-gray-700 to-gray-400 no-scrollbar"
+          >
             <ChosenCards books={chosenBooks} />
           </div>
         )}
 
         <SideDialog
           title="Libros seleccionados"
-          isOpen={modalOpen && !isMediumScreen}
+          isOpen={modalOpen && isMediumScreen}
           onClose={() => setModalOpen(false)}
         >
           <ChosenCards books={chosenBooks} />
