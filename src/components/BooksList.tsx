@@ -27,7 +27,7 @@ const BooksList = ({ books, booksAll, isLoading }: BooksListProps) => {
   return (
     <>
       <div className="bg-gray-600  p-4">
-        <div className="grid grid-cols-3 col-span-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 col-span-3">
           <div>
             <Input label="Busqueda" handleValue={setSearch} />
           </div>
