@@ -2,12 +2,14 @@
 import { useState } from "react";
 import { Book as BookInterface } from "../interfaces/Books.interfaces";
 import Book from "./Book";
+import useSaveChosenBooks from "../hooks/useSaveChosenBooks";
 
 interface Props {
   books: BookInterface[];
 }
 
-const OverlayCards = ({ books }: Props) => {
+const ChosenCards = ({ books }: Props) => {
+  const { removeBook } = useSaveChosenBooks();
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   const handleCardClick = (id: string | null) => {
@@ -19,7 +21,7 @@ const OverlayCards = ({ books }: Props) => {
   };
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center mt-16">
+    <div className="relative w-full h-full flex flex-col items-center justify-center mt-10">
       {books.map((card, index) => (
         <div
           key={card.ISBN}
@@ -33,7 +35,27 @@ const OverlayCards = ({ books }: Props) => {
           }}
           onClick={() => handleCardClick(card.ISBN)}
         >
-          <h2 className="text-xl font-bold mb-2 text-white">{card.title}</h2>
+          <div className="flex justify-between items-center mb-0">
+            <h2 className="text-xl font-bold mb-2 text-white">{card.title}</h2>
+            <button
+              onClick={() => removeBook(card)}
+              className="text-gray-300 hover:text-gray-100 focus:outline-none"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
           <p className="text-white">{card.synopsis}</p>
           <Book book={card} isChoosenList />
         </div>
@@ -42,4 +64,4 @@ const OverlayCards = ({ books }: Props) => {
   );
 };
 
-export default OverlayCards;
+export default ChosenCards;

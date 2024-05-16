@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import BooksList from "./components/BooksList";
+import BooksScreen from "./components/BooksScreen";
 import useGuardData from "./hooks/useGuardData";
 
 const queryClient = new QueryClient();
@@ -8,7 +8,7 @@ function App() {
   useGuardData();
   return (
     <QueryClientProvider client={queryClient}>
-      <BooksList />
+      <BooksScreen />
     </QueryClientProvider>
   );
 }
